@@ -23,3 +23,12 @@ class Hand:
     def add_card(self, card):
         self.cards.append(card)
         self.value += self.values[card.rank]
+
+        self.adjust_for_ace()
+
+    def adjust_for_ace(self):
+        while self.value > 21:
+            for card in self.cards:
+                if card.rank == "Ace":
+                    self.value -= 10
+                    return
